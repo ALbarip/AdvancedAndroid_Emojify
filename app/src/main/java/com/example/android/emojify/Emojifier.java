@@ -58,11 +58,29 @@ class Emojifier {
             Toast.makeText(context, R.string.no_faces_message, Toast.LENGTH_SHORT).show();
         }
 
-        // TODO (2): Iterate through the faces, calling getClassifications() for each face.
+        // TODO DONE (2): Iterate through the faces, calling getClassifications() for each face.
+        else{
+            for (int i =0; i< faces.size();i++){
+                Face face = faces.valueAt(i);
 
+                // Catat probabilitasi klasifikasi setiap wajah
+                getClassifications(face);
+            }
+        }
         // Release the detector
         detector.release();
     }
 
-    // TODO (1): Create a static method called getClassifications() which logs the probability of each eye being open and that the person is smiling.
+    // TODO DONE (1): Create a static method called getClassifications() which logs the probability of each eye being open and that the person is smiling.
+
+    /**
+     * Method untuk mencatat probabilitas klasifikasi wajah
+     * @param face Wajah yang dijadikan kaslisifkasi probabilitas
+     */
+    private static void getClassifications(Face face){
+        // Catat semua probabilitas
+        Log.d(LOG_TAG, "getClassification: SmilingProb = "+face.getIsSmilingProbability());
+        Log.d(LOG_TAG, "getClassification: LeftEyeProb = "+face.getIsLeftEyeOpenProbability());
+        Log.d(LOG_TAG, "getClassification: RightEyeProb = "+face.getIsRightEyeOpenProbability());
+    }
 }
